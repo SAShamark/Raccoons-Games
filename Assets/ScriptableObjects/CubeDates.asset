@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 158928998c1ab9f4e85655f50f946492, type: 3}
+  m_Name: CubeDates
+  m_EditorClassIdentifier: 
+  _cubeColors:
+  - {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
+  - {r: 0.24959949, g: 0.6698111, b: 0.6698113, a: 1}
+  - {r: 1, g: 0.9441427, b: 0, a: 1}
+  - {r: 0.7045921, g: 0.3160377, b: 1, a: 1}
+  - {r: 0.456182, g: 0, b: 1, a: 1}
+  - {r: 0.8301887, g: 0.3563546, b: 0.3563546, a: 1}
+  - {r: 1, g: 0, b: 0.529901, a: 1}
+  - {r: 0.16398184, g: 0.6320754, b: 0.40572327, a: 1}
+  - {r: 0.05540227, g: 0.7830189, b: 0.12825581, a: 1}
+  - {r: 0.46226418, g: 0.41644898, b: 0.13300997, a: 1}
+  - {r: 0.43862918, g: 0.32453722, b: 0.4811321, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
+  _baseNumber: 2
+  _forcePower: 50
+  _pushDirection: {x: 0, y: 0, z: 1}
