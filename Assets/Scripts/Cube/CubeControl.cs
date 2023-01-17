@@ -17,6 +17,7 @@ namespace Cube
         [SerializeField] private Renderer _renderer;
         [SerializeField] private Rigidbody _rigidbody;
 
+
         private List<Color> _colors;
         private Vector3 _pushDirection;
         private float _pushPower;
@@ -24,6 +25,24 @@ namespace Cube
 
 
         private const int NextNumber = 2;
+
+
+        private void Update()
+        {
+            if (transform.position.x is < -5.5f or > 5.5f)
+            {
+                transform.position = new Vector3(0, transform.position.y, transform.position.z);
+            }
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.TryGetComponent(out CubeControl cubeControl) && cubeControl._isDetach &&
+                cubeControl.Number == Number)
+            {
+                CollideWithSameNumberCube(cubeControl);
+            }
+        }
 
         private void OnDisable()
         {
@@ -91,15 +110,6 @@ namespace Cube
         public void Push()
         {
             _rigidbody.AddForce(_pushDirection * _pushPower, ForceMode.Impulse);
-        }
-
-        private void OnCollisionEnter(Collision collision)
-        {
-            if (collision.gameObject.TryGetComponent(out CubeControl cubeControl) && cubeControl._isDetach &&
-                cubeControl.Number == Number)
-            {
-                CollideWithSameNumberCube(cubeControl);
-            }
         }
 
         private void CollideWithSameNumberCube(CubeControl cubeControl)

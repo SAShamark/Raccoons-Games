@@ -1,5 +1,4 @@
 using Cube;
-using Input;
 using Scriptable;
 using TMPro;
 using UnityEngine;
@@ -12,35 +11,35 @@ public class ApplicationStart : MonoBehaviour
     [SerializeField] private TMP_Text _pointsText;
 
     private CubeFactory _cubeFactory;
-    private TouchCubeAction _touchCubeAction;
+    private InputCubeAction _inputCubeAction;
     private CubeCombiner _cubeCombiner;
     private InterfaceController _interfaceController;
 
     private void Awake()
     {
         _cubeFactory = new CubeFactory(_cubeDates, _cubePrefab, _cubeTransform);
-        _touchCubeAction = new TouchCubeAction();
+        _inputCubeAction = new InputCubeAction();
         _cubeCombiner = new CubeCombiner();
         _interfaceController = new InterfaceController(_pointsText);
     }
 
     private void Start()
     {
-        _touchCubeAction.Detached += CubeDetach;
-        _touchCubeAction.Detached += _interfaceController.ChangePoints;
+        _inputCubeAction.Detached += CubeDetach;
+        _inputCubeAction.Detached += _interfaceController.ChangePoints;
         _cubeCombiner.OnCombined += CubeCombined;
         GetNewCube();
     }
 
     private void Update()
     {
-        _touchCubeAction?.Update();
+        _inputCubeAction?.Update();
     }
 
     private void OnDestroy()
     {
-        _touchCubeAction.Detached -= CubeDetach;
-        _touchCubeAction.Detached += _interfaceController.ChangePoints;
+        _inputCubeAction.Detached -= CubeDetach;
+        _inputCubeAction.Detached += _interfaceController.ChangePoints;
         _cubeCombiner.OnCombined -= CubeCombined;
     }
 
@@ -53,7 +52,7 @@ public class ApplicationStart : MonoBehaviour
     private void GetNewCube()
     {
         var cube = _cubeFactory.GetCube();
-        _touchCubeAction.Attach(cube);
+        _inputCubeAction.Attach(cube);
     }
 
     private void CubeCollide(CubeControl cube1, CubeControl cube2)
