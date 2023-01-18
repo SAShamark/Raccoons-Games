@@ -21,7 +21,7 @@ namespace Cube
         {
             _inputSystem?.Update();
         }
-        
+
         public void Attach(CubeControl cubeControl)
         {
             _cubeControl = cubeControl;

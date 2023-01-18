@@ -11,15 +11,15 @@ namespace Cube.CubeObject
     public class CubeControl : MonoBehaviour
     {
         public event Action<CubeControl, CubeControl> OnCollide;
-        private bool _isDetach;
+        public CubeLevel CubeLevel { get; private set; }
+        public CubeMove CubeMove { get; private set; }
 
         [SerializeField] private List<TMP_Text> _numberTexts;
         [SerializeField] private Renderer _renderer;
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private ParticleSystem _levelUpParticle;
 
-        public CubeLevel CubeLevel { get; private set; }
-        public CubeMove CubeMove { get; private set; }
+        private bool _isDetach;
 
 
         private void Update()

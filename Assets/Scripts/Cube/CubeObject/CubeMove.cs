@@ -5,7 +5,6 @@ namespace Cube.CubeObject
 {
     public class CubeMove
     {
-
         private readonly Rigidbody _rigidbody;
         private readonly Vector3 _pushDirection;
         private readonly float _durationToStartPosition;
@@ -43,7 +42,5 @@ namespace Cube.CubeObject
         {
             _rigidbody.AddForce(_pushDirection * _pushPower, ForceMode.Impulse);
         }
-
-        
     }
 }

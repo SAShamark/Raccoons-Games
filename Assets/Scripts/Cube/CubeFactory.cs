@@ -9,7 +9,7 @@ namespace Cube
         private readonly ObjectPool<CubeControl> _cubePool;
         private readonly CubeDates _cubeDates;
         private readonly Transform _startCubePosition;
-        
+
         private const int StartCubeCount = 1;
 
         public CubeFactory(CubeDates cubeDates, CubeControl cubePrefab, Transform cubeTransform,

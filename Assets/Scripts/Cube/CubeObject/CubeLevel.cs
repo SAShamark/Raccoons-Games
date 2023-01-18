@@ -13,12 +13,13 @@ namespace Cube.CubeObject
         private readonly List<Color> _colors;
         private readonly List<TMP_Text> _numberTexts;
         private readonly Renderer _renderer;
-        private readonly float _durationToChangeCube;
         private readonly ParticleSystem _levelUpParticle;
+        private readonly float _durationToChangeCube;
 
         private const int NextNumber = 2;
 
-        public CubeLevel(List<Color> colors, List<TMP_Text> numberTexts, Renderer renderer, float durationToChangeCube, ParticleSystem levelUpParticle)
+        public CubeLevel(List<Color> colors, List<TMP_Text> numberTexts, Renderer renderer, float durationToChangeCube,
+            ParticleSystem levelUpParticle)
         {
             _colors = colors;
             _numberTexts = numberTexts;

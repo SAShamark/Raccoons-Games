@@ -1,4 +1,3 @@
-using System;
 using Cube;
 using Cube.CubeObject;
 using Scriptable;
@@ -43,7 +42,7 @@ public class ApplicationStart : MonoBehaviour
     {
         _inputCubeAction?.Update();
     }
-    
+
     private void OnDestroy()
     {
         _inputCubeAction.Detached -= CubeDetach;

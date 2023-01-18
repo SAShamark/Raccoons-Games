@@ -22,7 +22,7 @@ namespace Inputs
         }
 
         public abstract void Update();
-        
+
         protected void BeginInput()
         {
             _isInput = true;
