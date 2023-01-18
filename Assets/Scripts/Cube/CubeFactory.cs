@@ -7,18 +7,21 @@ namespace Cube
     {
         private readonly ObjectPool<CubeControl> _cubePool;
         private readonly CubeDates _cubeDates;
+        private readonly Transform _startCubePosition;
 
-        public CubeFactory(CubeDates cubeDates, CubeControl cubePrefab, Transform cubeTransform)
+        public CubeFactory(CubeDates cubeDates, CubeControl cubePrefab, Transform cubeTransform,
+            Transform startCubePosition)
         {
-            _cubeDates = cubeDates;
             _cubePool = new ObjectPool<CubeControl>(cubePrefab, 1, cubeTransform);
+            _cubeDates = cubeDates;
+            _startCubePosition = startCubePosition;
         }
 
         public CubeControl GetCube()
         {
             var cube = _cubePool.GetFreeElement();
-            cube.InitializeCube(_cubeDates.PushDirection, _cubeDates.PushPower, _cubeDates.BaseNumber,
-                _cubeDates.CubeColors, TryGiveSecondLevel());
+            cube.InitializeCube(_cubeDates, TryGiveSecondLevel());
+            cube.MoveToStartPosition(_startCubePosition);
             return cube;
         }
 

@@ -7,6 +7,7 @@ public class ApplicationStart : MonoBehaviour
 {
     [SerializeField] private CubeControl _cubePrefab;
     [SerializeField] private Transform _cubeTransform;
+    [SerializeField] private Transform _startCubePosition;
     [SerializeField] private CubeDates _cubeDates;
     [SerializeField] private TMP_Text _pointsText;
 
@@ -17,7 +18,7 @@ public class ApplicationStart : MonoBehaviour
 
     private void Awake()
     {
-        _cubeFactory = new CubeFactory(_cubeDates, _cubePrefab, _cubeTransform);
+        _cubeFactory = new CubeFactory(_cubeDates, _cubePrefab, _cubeTransform, _startCubePosition);
         _inputCubeAction = new InputCubeAction();
         _cubeCombiner = new CubeCombiner();
         _interfaceController = new InterfaceController(_pointsText);

@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
+using Scriptable;
 using TMPro;
 using UnityEngine;
 
@@ -17,13 +19,14 @@ namespace Cube
         [SerializeField] private Renderer _renderer;
         [SerializeField] private Rigidbody _rigidbody;
 
-
         private List<Color> _colors;
         private Vector3 _pushDirection;
         private float _pushPower;
         private bool _isDetach;
 
 
+        private float _durationToStartPosition = 0.5f;
+        private float _durationToChangeCube = 1f;
         private const int NextNumber = 2;
 
 
@@ -51,14 +54,19 @@ namespace Cube
             transform.eulerAngles = Vector3.zero;
         }
 
-        public void InitializeCube(Vector3 pushDirection, float pushPower, int baseNumber, List<Color> colors,
-            bool isSecondLevel)
+        public void InitializeCube(CubeDates cubeDates, bool isSecondLevel)
         {
-            _pushDirection = pushDirection;
-            _pushPower = pushPower;
-            _colors = colors;
+            _pushDirection = cubeDates.PushDirection;
+            _pushPower = cubeDates.PushPower;
+            _colors = cubeDates.CubeColors;
+            _durationToStartPosition = cubeDates.DurationToStartPosition;
+            _durationToChangeCube = cubeDates.DurationToChangeCube;
+            IsSecondLevel(isSecondLevel, cubeDates.BaseNumber);
+        }
 
-            IsSecondLevel(isSecondLevel, baseNumber);
+        public void MoveToStartPosition(Transform startPosition)
+        {
+            transform.DOMove(startPosition.position, _durationToStartPosition);
         }
 
         private void IsSecondLevel(bool isSecondLevel, int baseNumber)
@@ -97,7 +105,7 @@ namespace Cube
 
         private void SetColor(Color color)
         {
-            _renderer.material.color = color;
+            _renderer.material.DOColor(color, _durationToChangeCube);
         }
 
         public void IsDetached(bool detached)
