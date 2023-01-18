@@ -11,6 +11,7 @@ namespace Inputs
                 var touch = Input.GetTouch(0);
 
                 Ray = Camera.ScreenPointToRay(Input.mousePosition);
+                  
                 switch (touch.phase)
                 {
                     case TouchPhase.Began:

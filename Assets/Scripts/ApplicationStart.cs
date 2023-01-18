@@ -1,34 +1,41 @@
+using System;
 using Cube;
+using Cube.CubeObject;
 using Scriptable;
 using TMPro;
 using UnityEngine;
 
 public class ApplicationStart : MonoBehaviour
 {
-    [SerializeField] private CubeControl _cubePrefab;
+    [Header("CubeInfo")] [SerializeField] private CubeControl _cubePrefab;
     [SerializeField] private Transform _cubeTransform;
     [SerializeField] private Transform _startCubePosition;
     [SerializeField] private CubeDates _cubeDates;
-    [SerializeField] private TMP_Text _pointsText;
+
+    [Header("UI")] [SerializeField] private TMP_Text _pointsText;
 
     private CubeFactory _cubeFactory;
     private InputCubeAction _inputCubeAction;
     private CubeCombiner _cubeCombiner;
-    private InterfaceController _interfaceController;
+    private Points _points;
 
     private void Awake()
     {
         _cubeFactory = new CubeFactory(_cubeDates, _cubePrefab, _cubeTransform, _startCubePosition);
         _inputCubeAction = new InputCubeAction();
         _cubeCombiner = new CubeCombiner();
-        _interfaceController = new InterfaceController(_pointsText);
+        _points = new Points(_pointsText);
     }
 
     private void Start()
     {
+        _inputCubeAction.Start();
+        _points.Init();
+
         _inputCubeAction.Detached += CubeDetach;
-        _inputCubeAction.Detached += _interfaceController.ChangePoints;
+        _inputCubeAction.Detached += _points.ChangePoints;
         _cubeCombiner.OnCombined += CubeCombined;
+
         GetNewCube();
     }
 
@@ -36,11 +43,11 @@ public class ApplicationStart : MonoBehaviour
     {
         _inputCubeAction?.Update();
     }
-
+    
     private void OnDestroy()
     {
         _inputCubeAction.Detached -= CubeDetach;
-        _inputCubeAction.Detached += _interfaceController.ChangePoints;
+        _inputCubeAction.Detached -= _points.ChangePoints;
         _cubeCombiner.OnCombined -= CubeCombined;
     }
 
@@ -56,12 +63,12 @@ public class ApplicationStart : MonoBehaviour
         _inputCubeAction.Attach(cube);
     }
 
-    private void CubeCollide(CubeControl cube1, CubeControl cube2)
+    private void CubeCollide(CubeControl firstCube, CubeControl secondCube)
     {
-        _cubeCombiner.Combine(cube1, cube2);
+        _cubeCombiner.Combine(firstCube, secondCube);
 
-        cube1.OnCollide -= CubeCollide;
-        cube2.OnCollide -= CubeCollide;
+        firstCube.OnCollide -= CubeCollide;
+        secondCube.OnCollide -= CubeCollide;
     }
 
     private void CubeCombined(CubeControl cube)

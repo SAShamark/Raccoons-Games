@@ -1,4 +1,5 @@
 ﻿using System;
+using Cube.CubeObject;
 using UnityEngine;
 
 namespace Cube
@@ -10,12 +11,12 @@ namespace Cube
         public void Combine(CubeControl mainCubeControl, CubeControl secondCubeControl)
         {
             mainCubeControl.transform.position = GetMiddlePosition(mainCubeControl, secondCubeControl);
-            
-            int nextCubeNumber = mainCubeControl.Number + secondCubeControl.Number;
-            mainCubeControl.ChangeNumber(nextCubeNumber);
-            
-            int nextColorIndex = mainCubeControl.ColorIndex + 1;
-            mainCubeControl.ChangeColorIndex(nextColorIndex);
+
+            int nextCubeNumber = mainCubeControl.CubeLevel.Number + secondCubeControl.CubeLevel.Number;
+            mainCubeControl.CubeLevel.ChangeNumber(nextCubeNumber);
+
+            int nextColorIndex = mainCubeControl.CubeLevel.ColorIndex + 1;
+            mainCubeControl.CubeLevel.ChangeColorIndex(nextColorIndex);
 
             mainCubeControl.IsDetached(false);
             secondCubeControl.IsDetached(false);

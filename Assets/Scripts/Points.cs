@@ -1,19 +1,27 @@
-﻿using Cube;
+﻿using Cube.CubeObject;
 using TMPro;
 
-public class InterfaceController
+public class Points
 {
     private int _points;
+
     private readonly TMP_Text _pointsText;
 
-    public InterfaceController(TMP_Text pointsText)
+    private const int StartPoints = 0;
+
+    public Points(TMP_Text pointsText)
     {
         _pointsText = pointsText;
-        ChangePointsText(0);
     }
+
+    public void Init()
+    {
+        ChangePointsText(StartPoints);
+    }
+
     public void ChangePoints(CubeControl cubeControl)
     {
-        _points += cubeControl.Number;
+        _points += cubeControl.CubeLevel.Number;
         ChangePointsText(_points);
     }
 

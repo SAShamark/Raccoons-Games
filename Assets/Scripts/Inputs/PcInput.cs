@@ -7,6 +7,7 @@ namespace Inputs
         public override void Update()
         {
             Ray = Camera.ScreenPointToRay(Input.mousePosition);
+            
             if (Input.GetMouseButtonDown(0))
             {
                 BeginInput();

@@ -6,7 +6,7 @@ public class ObjectPool<T> where T : MonoBehaviour
 {
     private T Prefab { get; }
     private Transform Container { get; }
-    public List<T> Pool;
+    public List<T> Pool { get; private set; }
 
     public ObjectPool(T prefab, int count, Transform container)
     {
