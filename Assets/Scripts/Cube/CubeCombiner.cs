@@ -12,11 +12,11 @@ namespace Cube
         {
             mainCubeControl.transform.position = GetMiddlePosition(mainCubeControl, secondCubeControl);
 
-            int nextCubeNumber = mainCubeControl.CubeLevel.Number + secondCubeControl.CubeLevel.Number;
-            mainCubeControl.CubeLevel.ChangeNumber(nextCubeNumber);
 
+            int nextCubeNumber = mainCubeControl.CubeLevel.Number + secondCubeControl.CubeLevel.Number;
             int nextColorIndex = mainCubeControl.CubeLevel.ColorIndex + 1;
-            mainCubeControl.CubeLevel.ChangeColorIndex(nextColorIndex);
+            mainCubeControl.CubeLevel.NextLevel(nextCubeNumber, nextColorIndex);
+
 
             mainCubeControl.IsDetached(false);
             secondCubeControl.IsDetached(false);

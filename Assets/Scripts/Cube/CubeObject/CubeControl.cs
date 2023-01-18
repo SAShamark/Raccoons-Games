@@ -16,6 +16,7 @@ namespace Cube.CubeObject
         [SerializeField] private List<TMP_Text> _numberTexts;
         [SerializeField] private Renderer _renderer;
         [SerializeField] private Rigidbody _rigidbody;
+        [SerializeField] private ParticleSystem _levelUpParticle;
 
         public CubeLevel CubeLevel { get; private set; }
         public CubeMove CubeMove { get; private set; }
@@ -44,7 +45,8 @@ namespace Cube.CubeObject
 
         public void InitializeCube(CubeDates cubeDates, bool isSecondLevel)
         {
-            CubeLevel = new CubeLevel(cubeDates.CubeColors, _numberTexts, _renderer, cubeDates.DurationToChangeCube);
+            CubeLevel = new CubeLevel(cubeDates.CubeColors, _numberTexts, _renderer, cubeDates.DurationToChangeCube,
+                _levelUpParticle);
             CubeMove = new CubeMove(cubeDates.PushDirection, cubeDates.DurationToStartPosition, cubeDates.PushPower,
                 _rigidbody);
 

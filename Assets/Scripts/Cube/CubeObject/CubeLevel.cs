@@ -14,15 +14,17 @@ namespace Cube.CubeObject
         private readonly List<TMP_Text> _numberTexts;
         private readonly Renderer _renderer;
         private readonly float _durationToChangeCube;
+        private readonly ParticleSystem _levelUpParticle;
 
         private const int NextNumber = 2;
 
-        public CubeLevel(List<Color> colors, List<TMP_Text> numberTexts, Renderer renderer, float durationToChangeCube)
+        public CubeLevel(List<Color> colors, List<TMP_Text> numberTexts, Renderer renderer, float durationToChangeCube, ParticleSystem levelUpParticle)
         {
             _colors = colors;
             _numberTexts = numberTexts;
             _renderer = renderer;
             _durationToChangeCube = durationToChangeCube;
+            _levelUpParticle = levelUpParticle;
         }
 
         public void IsSecondLevel(bool isSecondLevel, int baseNumber)
@@ -39,7 +41,14 @@ namespace Cube.CubeObject
             }
         }
 
-        public void ChangeNumber(int number)
+        public void NextLevel(int nextCubeNumber, int nextColorIndex)
+        {
+            _levelUpParticle.Play();
+            ChangeNumber(nextCubeNumber);
+            ChangeColorIndex(nextColorIndex);
+        }
+
+        private void ChangeNumber(int number)
         {
             Number = number;
             SetNumberText(number);
@@ -53,7 +62,7 @@ namespace Cube.CubeObject
             }
         }
 
-        public void ChangeColorIndex(int index)
+        private void ChangeColorIndex(int index)
         {
             ColorIndex = index;
             SetColor(_colors.Count > index ? _colors[index] : _colors[_colors.Count - 1]);
