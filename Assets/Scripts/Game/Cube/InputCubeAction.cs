@@ -1,9 +1,9 @@
 ﻿using System;
-using Cube.CubeObject;
-using Inputs;
+using Game.Cube.CubeObject;
+using Game.Inputs;
 using UnityEngine;
 
-namespace Cube
+namespace Game.Cube
 {
     public class InputCubeAction
     {

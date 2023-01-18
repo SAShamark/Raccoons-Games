@@ -1,8 +1,8 @@
 ﻿using System;
-using Cube.CubeObject;
+using Game.Cube.CubeObject;
 using UnityEngine;
 
-namespace Cube
+namespace Game.Cube
 {
     public class CubeCombiner
     {

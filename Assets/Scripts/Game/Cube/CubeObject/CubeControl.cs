@@ -1,14 +1,14 @@
 using System;
 using System.Collections.Generic;
-using Scriptable;
+using Game.Scriptable;
 using TMPro;
 using UnityEngine;
 
-namespace Cube.CubeObject
+namespace Game.Cube.CubeObject
 {
     [RequireComponent(typeof(Renderer))]
     [RequireComponent(typeof(Rigidbody))]
-    public class CubeControl : MonoBehaviour
+    public class CubeControl : MonoBehaviour, ICube
     {
         public event Action<CubeControl, CubeControl> OnCollide;
         public CubeLevel CubeLevel { get; private set; }
@@ -21,6 +21,7 @@ namespace Cube.CubeObject
 
         private bool _isDetach;
 
+        private const float ZPositionForCombine = 3;
 
         private void Update()
         {
@@ -30,7 +31,7 @@ namespace Cube.CubeObject
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.TryGetComponent(out CubeControl cubeControl) && _isDetach &&
-                cubeControl.CubeLevel.Number == CubeLevel.Number && transform.position.z > 3)
+                cubeControl.CubeLevel.Number == CubeLevel.Number && transform.position.z > ZPositionForCombine)
             {
                 OnCollide?.Invoke(this, cubeControl);
             }

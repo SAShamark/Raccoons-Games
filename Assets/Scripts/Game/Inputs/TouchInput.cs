@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Inputs
+namespace Game.Inputs
 {
     public class TouchInput : InputSystem
     {

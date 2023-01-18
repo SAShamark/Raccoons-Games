@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Scriptable
+namespace Game.Scriptable
 {
     [CreateAssetMenu(fileName = "CubeDates", menuName = "ScriptableObjects/Cube", order = 1)]
     public class CubeDates : ScriptableObject

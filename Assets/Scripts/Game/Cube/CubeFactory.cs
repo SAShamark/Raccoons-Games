@@ -1,8 +1,8 @@
-using Cube.CubeObject;
-using Scriptable;
+using Game.Cube.CubeObject;
+using Game.Scriptable;
 using UnityEngine;
 
-namespace Cube
+namespace Game.Cube
 {
     public class CubeFactory
     {

@@ -3,9 +3,9 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
-namespace Cube.CubeObject
+namespace Game.Cube.CubeObject
 {
-    public class CubeLevel
+    public class CubeLevel: ILevelUp
     {
         public int Number { get; private set; }
         public int ColorIndex { get; private set; }
@@ -17,6 +17,8 @@ namespace Cube.CubeObject
         private readonly float _durationToChangeCube;
 
         private const int NextNumber = 2;
+        private const int FirstColorIndex = 0;
+        private const int SecondColorIndex = 1;
 
         public CubeLevel(List<Color> colors, List<TMP_Text> numberTexts, Renderer renderer, float durationToChangeCube,
             ParticleSystem levelUpParticle)
@@ -33,11 +35,11 @@ namespace Cube.CubeObject
             if (isSecondLevel)
             {
                 ChangeNumber(baseNumber * NextNumber);
-                ChangeColorIndex(1);
+                ChangeColorIndex(SecondColorIndex);
             }
             else
             {
-                ChangeColorIndex(0);
+                ChangeColorIndex(FirstColorIndex);
                 ChangeNumber(baseNumber);
             }
         }
@@ -66,7 +68,9 @@ namespace Cube.CubeObject
         private void ChangeColorIndex(int index)
         {
             ColorIndex = index;
-            SetColor(_colors.Count > index ? _colors[index] : _colors[_colors.Count - 1]);
+            int lastColorIndex = _colors.Count - 1;
+            
+            SetColor(_colors.Count > index ? _colors[index] : _colors[lastColorIndex]);
         }
 
         private void SetColor(Color color)
